@@ -11,8 +11,8 @@ async function startServer() {
   try {
     await connectDB();
 
-    // Auto-seed in development if database is empty
-    if (process.env.NODE_ENV !== 'production') {
+    // Auto-seed if database is empty or AUTO_SEED is enabled
+    if (process.env.NODE_ENV !== 'production' || process.env.AUTO_SEED === 'true') {
       await seedDatabase(false);
     }
 
